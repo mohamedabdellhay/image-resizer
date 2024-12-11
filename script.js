@@ -60,6 +60,7 @@ document.getElementById("convertButton").addEventListener("click", async () => {
           link.download = `photos/${file.name.replace(/\.[^/.]+$/, ".webp")}`;
           link.textContent = `Download ${file.name}`;
           link.className = "btn btn-success d-block my-2";
+          input.value = "";
 
           link.addEventListener("click", (e) => {
             e.preventDefault();
@@ -75,4 +76,12 @@ document.getElementById("convertButton").addEventListener("click", async () => {
       };
     });
   }
+});
+
+// prevent users from refreshing the page
+
+window.addEventListener("beforeunload", (event) => {
+  // Display a confirmation dialog
+  event.preventDefault();
+  event.returnValue = ""; // For most browsers (standard way)
 });
